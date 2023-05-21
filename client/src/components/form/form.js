@@ -8,16 +8,16 @@ import {useSelector} from "react-redux";
 
 
 const Form=({currentId,setCurrentId})=>{
-    const post=useSelector((state)=>currentId?state.posts.find((p)=>p._id==currentId):null);
+    const post=useSelector((state)=>currentId?state.posts.find((p)=>p._id===currentId):null);
     const [postData,setPostData]=useState({creator:'',title:'',message:'',tags:'',selectedFile:''});
     const classes=useStyles();
     const dispatch=useDispatch();
     useEffect(()=>{
         if(post)setPostData(post);
-    },[post])
+    },[post]);
 
 
-    const handleSubmit=(e)=>{
+    const handleSubmit=async (e)=>{
         e.preventDefault();
         if(currentId){
             dispatch(updatePost(currentId,postData));

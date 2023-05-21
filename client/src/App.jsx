@@ -7,6 +7,7 @@ import useStyles from "./styles.js";
 import {getPosts} from "./actions/posts.js";
 //import {useDispatch} from "react-redux"; hook to get the dispatch function
 import {useDispatch} from "react-redux";
+
 const App=()=>{
     const [currentId,setCurrentId]=useState(null);  
     const classes =useStyles();
