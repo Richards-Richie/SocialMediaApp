@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useState,useEffect} from "react";
 import {Container,AppBar,Typography,Grow,Grid} from "@material-ui/core";
 import memories from "./images/logo192.png";
 import Posts from "./components/posts/posts.js";
@@ -8,13 +8,14 @@ import {getPosts} from "./actions/posts.js";
 //import {useDispatch} from "react-redux"; hook to get the dispatch function
 import {useDispatch} from "react-redux";
 const App=()=>{
+    const [currentId,setCurrentId]=useState(null);  
     const classes =useStyles();
     //to use the dispatch we need to create a variable and assign it to useDispatch()
     const dispatch=useDispatch(); 
     //we will use useEffect to dispatch the action,which takes 2 arguements a callback function and an array
     useEffect(()=>{
         dispatch(getPosts());
-    },[dispatch])
+    },[currentId,dispatch])
 
     return (
         <Container maxwidth="lg">
@@ -28,11 +29,10 @@ const App=()=>{
                 <Container>
                     <Grid containerjustify="space-between" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7} >
-                            <Posts/>
-                            <Posts/>
+                            <Posts setCurrentId={setCurrentId} />
                         </Grid>
                         <Grid item xs={12} sm={4} >
-                            <Form/>
+                            <Form currentId={currentId} setCurrentId={setCurrentId} />
                         </Grid>
                         
                     </Grid>
