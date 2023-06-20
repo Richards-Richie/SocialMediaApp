@@ -1,0 +1,21 @@
+import jwt from "jsonwebtoken";
+ 
+
+const auth=async (req,res,next)=>{
+    try{
+        const token=req.headers.authorization.split(" ")[1];
+        const isCustomAuth=token.length < 500;
+        let decodedData;
+        if(token && isCustomAuth){
+            decodedData=jwt.verify(token,porcess.env.JWT_TOKEN);
+            req.userId=decodedData?.id;
+        }
+        next();
+
+    
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export default auth;

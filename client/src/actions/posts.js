@@ -1,6 +1,5 @@
-import * as api from "../api";
 import { FETCH_ALL,CREATE,DELETE,UPDATE } from "../constants/actionTypes.js";
-
+import * as api from "../api";
 //now we will create action creators
 //Action creators are functions that return actions
 //we will use async await to fetch data from the backend

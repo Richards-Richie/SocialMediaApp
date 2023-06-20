@@ -4,6 +4,7 @@ import App from "./App";
 import "./index.css"
 import {Provider} from "react-redux"; 
 import {createStore,applyMiddleware,compose} from "redux";
+
 //import { configureStore } from '@reduxjs/toolkit';
 
 import thunk from "redux-thunk";
@@ -15,6 +16,8 @@ import {reducers} from "./reducers";
 //compose function as an arguement which has applymiddleware as an arguement which has thunk as an arguement
 const storestate=createStore(reducers,compose(applyMiddleware(thunk)));
 reactDom.render(
-<Provider store={storestate} >
+<Provider 
+    
+    store={storestate} >
     <App/>
 </Provider>,document.getElementById('root'));

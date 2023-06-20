@@ -9,9 +9,10 @@
 //so we use combineReducers to combine all the reducers into one
 import {combineReducers} from "redux";
 import posts from "./posts.js";
+import auth from "./auth.js";
 
 //since this is reducer that will be used in the app(index.js) we need to export it
 export const reducers= combineReducers({
-    posts,
+    posts,auth
 });
 //now we need to import posts from reducers/posts.js

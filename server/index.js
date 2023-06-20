@@ -3,6 +3,7 @@ import bp from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import postroutes from "./routes/posts.js"
+import userroutes from "./routes/users.js"
 import dotenv from "dotenv";
 
 
@@ -14,6 +15,7 @@ app.use(bp.urlencoded({limit:"30mb",extended:true}));
 app.use(cors());
 
 app.use('/posts',postroutes);
+app.use("/user",userroutes);
 const port=process.env.PORT || 55555;
 mongoose.set('strictQuery',false);
 
