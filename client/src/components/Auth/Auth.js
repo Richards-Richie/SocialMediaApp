@@ -31,7 +31,7 @@ const Auth=()=>{
     const [formData,setFormData]=useState(initialState);
     const [isSignUp,setIsSignUp]=useState(true);
 
-    const {showPassword,setShowPassword}=useState(true);
+    const {showPassword,setShowPassword}=useState(false);
     const switchMode=()=>{
         
         setIsSignUp((prevIsSignUp)=>!prevIsSignUp);
@@ -50,16 +50,16 @@ const Auth=()=>{
         setFormData({...formData,[e.target.name]:e.target.value});
     }
     const handleShowPassword=()=>setShowPassword((prevShowPassword)=>!prevShowPassword);
-    const onSucess= async (res)=>{
-        const result=res?.profileObj;
-        const token=res?.tokenId;
-        try{
-            dispatch({type:"AUTH",data:{result,token}});
-            history.push('/');
-        }catch(err){
-            console.log(err);
-        }
-    }
+    // const onSucess= async (res)=>{
+    //     const result=res?.profileObj;
+    //     const token=res?.tokenId;
+    //     try{
+    //         dispatch({type:"AUTH",data:{result,token}});
+    //         history.push('/');
+    //     }catch(err){
+    //         console.log(err);
+    //     }
+    // }
     
 
     
@@ -86,13 +86,13 @@ const Auth=()=>{
                             {isSignUp ? "sign up" : "sign in"}
                     </Button>
                     {/* <Login className={classes.googleButton} fullWidth variant="contained" /> */}
-                    <GoogleLogin
+                    {/* <GoogleLogin
                         onSuccess={onSucess}
                         onError={() => {
                             console.log('Login Failed');
                         }}
                         cookiePolicy="single_host_origin"
-                    />;
+                    />; */}
                     <Grid container justify="flex-end" >
                         <Grid item>
                             <Button onClick={switchMode}>
