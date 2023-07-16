@@ -6,7 +6,6 @@ import postroutes from "./routes/posts.js"
 import userroutes from "./routes/users.js"
 import dotenv from "dotenv";
 
-
 const app=express();
 dotenv.config();
 
@@ -19,7 +18,6 @@ app.use("/user",userroutes);
 const port=process.env.PORT || 55555;
 mongoose.set('strictQuery',false);
 
-
 mongoose
 .connect(process.env.CONNECTION_URL,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>{
@@ -30,8 +28,6 @@ mongoose
     console.log(err.message);
 });
 // mongoose.set('useFindAndModify',false);    
-
-
 
 function Listen(){
     app.listen(port,()=>{

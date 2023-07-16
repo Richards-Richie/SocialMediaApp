@@ -1,15 +1,13 @@
-import React,{useState,useEffect} from "react";
-import {Avatar,Button,Paper,Grid,Typography,Container, TextField} from "@material-ui/core" 
-import Login from "./login.js";
-import {gapi} from "gapi-script";
+import React,{useState} from "react";
+import {Avatar,Button,Paper,Grid,Typography,Container} from "@material-ui/core" 
+
 import useStyles from "./styles.js";
 import LockedOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from "./input.js";
-import icon from "./Icon.js";
+//import icon from "./Icon.js";
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {signin,signup} from "../../actions/auth.js";
-import { GoogleLogin } from '@react-oauth/google';
 
 
 
@@ -23,18 +21,24 @@ const initialState={firstName:"",lastName:"",email:"",password:"",confirmPasswor
 
 
 const Auth=()=>{
+    
     const clientId=process.env.CLIENT_ID;
     
     const history=useHistory();
     const dispatch=useDispatch();
     const classes=useStyles();
     const [formData,setFormData]=useState(initialState);
-    const [isSignUp,setIsSignUp]=useState(true);
-
+    const [isSignUp,setIsSignUp]=useState(false);
+    const [prevIsSignUp,setPrevIsSignUp]=useState(isSignUp);
+    
     const {showPassword,setShowPassword}=useState(false);
+
+    
     const switchMode=()=>{
-        
+        //e.preventDefault();
+        setFormData(initialState);
         setIsSignUp((prevIsSignUp)=>!prevIsSignUp);
+        //setIsSignUp(!isSignUp);
         setShowPassword(false);
     }
     const handleSubmit=(e)=>{
@@ -44,12 +48,14 @@ const Auth=()=>{
         }else{
             dispatch(signin(formData,history))
         }
-        console.log(formData);
+        //console.log(formData);
     }
     const handleChange=(e)=>{
+        
         setFormData({...formData,[e.target.name]:e.target.value});
     }
-    const handleShowPassword=()=>setShowPassword((prevShowPassword)=>!prevShowPassword);
+    const handleShowPassword=()=>setShowPassword(!showPassword);
+    //prevShowPassword)=>!prevShowPassword
     // const onSucess= async (res)=>{
     //     const result=res?.profileObj;
     //     const token=res?.tokenId;
@@ -69,18 +75,18 @@ const Auth=()=>{
                 <Avatar className={classes.avatar} >
                     <LockedOutlinedIcon/>
                 </Avatar>
-                <Typography variant="h5">{isSignUp ? 'sign up' : 'sign in'}</Typography>
+                <Typography component="h1" variant="h5">{isSignUp ? 'sign up' : 'sign in'}</Typography>
                 <form className={classes.form} onSubmit={handleSubmit} >
                     <Grid container spacing={2} >
                         { isSignUp && (
                                 <>
-                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-                                <Input name="lastName" label="Last Name" handleChange={handleChange}  half />
+                                <Input name="firstName" label="First Name" onChange={handleChange} autoFocus half />
+                                <Input name="lastName" label="Last Name" onChange={handleChange}  half />
                                 </>
                             )}
                         <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                        <Input name="password" label="password" handleChange={handleChange} type={showPassword ? "text":"password"} handleShowPassword={handleShowPassword}  />
-                        {isSignUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
+                        <Input name="password" label="password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}  />  
+                        {isSignUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"    />}
                     </Grid>
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >    
                             {isSignUp ? "sign up" : "sign in"}
@@ -93,7 +99,7 @@ const Auth=()=>{
                         }}
                         cookiePolicy="single_host_origin"
                     />; */}
-                    <Grid container justify="flex-end" >
+                    <Grid container justifyContent="flex-end" >
                         <Grid item>
                             <Button onClick={switchMode}>
                                 {isSignUp ? "Already have an account? sign in" : "Don't have an account?  sign up"}
@@ -101,10 +107,9 @@ const Auth=()=>{
                         </Grid>
                     </Grid>
                 </form>
-            
             </Paper>
         </Container>
     );
-}
+};
 
 export default Auth;

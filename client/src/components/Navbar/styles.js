@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
-        appBar: {
+    appBar: {
         borderRadius: 15,
         margin: '30px 0',
         display: 'flex',
@@ -31,13 +31,20 @@ export default makeStyles((theme) => ({
     userName: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent:"space-between",
     },
     brandContainer: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent:'space-between'  ,
+    },
+    logout:{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent:"space-between",
     },
     purple: {
         color: theme.palette.getContrastText(deepPurple[500]),
         backgroundColor: deepPurple[500],
-        marginRight:"10px",  },
+        },
 }));

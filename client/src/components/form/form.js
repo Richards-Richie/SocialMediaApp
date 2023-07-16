@@ -6,12 +6,14 @@ import {useDispatch} from "react-redux";
 import {createPost,updatePost} from "../../actions/posts.js";        
 import {useSelector} from "react-redux";
 
-const user=JSON.parse(localStorage.getItem("profile"));
+
 const Form=({currentId,setCurrentId})=>{
-    const post=useSelector((state)=>currentId?state.posts.find((p)=>p._id===currentId):null);
+    const post=useSelector((state)=>currentId ? state.posts.find((p)=>p._id===currentId) : null);
     const [postData,setPostData]=useState({title:'',message:'',tags:'',selectedFile:''});
     const classes=useStyles();
     const dispatch=useDispatch();
+    const user=JSON.parse(localStorage.getItem("profile"));
+
     useEffect(()=>{
         if(post)setPostData(post);
     },[post]);
@@ -29,7 +31,7 @@ const Form=({currentId,setCurrentId})=>{
         
     }
     const clear=()=>{ 
-        setCurrentId(null);
+        setCurrentId(0);
         setPostData({title:'',message:'',tags:'',selectedFile:''});
     }
 
