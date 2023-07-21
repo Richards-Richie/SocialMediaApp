@@ -31,7 +31,7 @@ const Auth=()=>{
     const [isSignUp,setIsSignUp]=useState(false);
     const [prevIsSignUp,setPrevIsSignUp]=useState(isSignUp);
     
-    const {showPassword,setShowPassword}=useState(false);
+    const [showPassword,setShowPassword]=useState(false);
 
     
     const switchMode=()=>{
@@ -80,8 +80,8 @@ const Auth=()=>{
                     <Grid container spacing={2} >
                         { isSignUp && (
                                 <>
-                                <Input name="firstName" label="First Name" onChange={handleChange} autoFocus half />
-                                <Input name="lastName" label="Last Name" onChange={handleChange}  half />
+                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+                                <Input name="lastName" label="Last Name" handleChange={handleChange}  half />
                                 </>
                             )}
                         <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
