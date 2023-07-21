@@ -31,7 +31,7 @@ const Navbar=()=>{
         setUser(null);
     }
     return(
-        <AppBar className={classes.appBar} position="static" color="inherit">
+        <AppBar className={classes.appBar} position="sticky" color="inherit">
             <div className={classes.brandContainer} >
                 <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center" >
                     MemoGraph
