@@ -1,5 +1,5 @@
 import axios from "axios";
-const API =axios.create({baseURL:'http://localhost:55555',});
+const API =axios.create({baseURL:'https://memogram-abkx.onrender.com',});
 
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){
